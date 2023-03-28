@@ -1,5 +1,6 @@
 package com.infogain.rewards.v1.controller;
 
+import com.infogain.rewards.v1.exceptions.CustomerNotFoundException;
 import com.infogain.rewards.v1.model.CustomerBo;
 import com.infogain.rewards.v1.model.Rewards;
 import com.infogain.rewards.v1.model.TransactionBo;
@@ -35,7 +36,7 @@ public class CustomerRewardsController {
         CustomerBo customer = rewardsService.findCustomerById(customerId);
         if(customer == null)
         {
-            throw new RuntimeException("Invalid / Missing customer Id ");
+            throw new CustomerNotFoundException("Invalid / Missing customer Id ");
         }
         LOGGER.info(" Customer name is  : " + customer.getCustomerName());
 
@@ -54,4 +55,25 @@ public class CustomerRewardsController {
         }
     }
 
+    @PostMapping(value = "/rewards/transaction",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TransactionBo> updateTransaction(@RequestBody TransactionBo transaction) {
+        LOGGER.info("Updating a Transaction" + transaction.toString());
+        try {
+            Long i = rewardsService.updateTransaction(transaction);
+            return new ResponseEntity<>(transaction, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping (value = "/rewards/transaction",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TransactionBo> deleteransaction(@RequestBody TransactionBo transaction) {
+        LOGGER.info("Deleting a Transaction" + transaction.toString());
+        try {
+            rewardsService.deleteTransaction(transaction);
+            return new ResponseEntity<>(transaction, HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

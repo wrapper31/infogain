@@ -10,4 +10,8 @@ public interface RewardsService {
 
     public int saveTransaction(TransactionBo transaction);
 
+    public Long updateTransaction(TransactionBo transaction);
+
+    public void deleteTransaction(TransactionBo transaction);
+
 }

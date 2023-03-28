@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 public class Transaction {
     @Id
     @Column(name = "TRANSACTION_ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long transactionId;
 
     @Column(name = "CUSTOMER_ID")

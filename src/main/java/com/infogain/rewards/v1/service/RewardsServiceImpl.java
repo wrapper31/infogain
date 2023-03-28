@@ -3,6 +3,8 @@ package com.infogain.rewards.v1.service;
 
 import com.infogain.rewards.v1.dto.Customer;
 import com.infogain.rewards.v1.dto.Transaction;
+import com.infogain.rewards.v1.exceptions.CustomerNotFoundException;
+import com.infogain.rewards.v1.exceptions.TransactionNotFoundException;
 import com.infogain.rewards.v1.model.CustomerBo;
 import com.infogain.rewards.v1.model.Rewards;
 import com.infogain.rewards.v1.model.TransactionBo;
@@ -47,11 +49,18 @@ public class RewardsServiceImpl implements RewardsService {
 
         List<Transaction> lastMonthTransactions = transactionRepository.findAllByCustomerIdAndTransactionDateBetween(
                 customerId, lastMonthTimestamp, Timestamp.from(Instant.now()));
+        if(lastMonthTransactions == null ) throw new TransactionNotFoundException("Invalid / Missing Transactions! ");
+
         LOGGER.info("lastMonthTransactions : " + lastMonthTransactions.size());
 
         Map<String, Integer> firstmonthRewardsPoint = util.getRewardPoints(lastMonthTransactions);
+        if(firstmonthRewardsPoint == null ) throw new TransactionNotFoundException("Invalid / Missing Transactions! ");
+
+
         List<Transaction> lastSecondMonthTransactions = transactionRepository
                 .findAllByCustomerIdAndTransactionDateBetween(customerId, lastSecondMonthTimestamp, lastMonthTimestamp);
+
+        if(lastSecondMonthTransactions == null ) throw new TransactionNotFoundException("Invalid / Missing Transactions! ");
 
         Map<String, Integer> secondMonthRewards = util.getRewardPoints(lastSecondMonthTransactions);
         LOGGER.info("lastSecondMonthTransactions : " + lastSecondMonthTransactions.size());
@@ -63,10 +72,6 @@ public class RewardsServiceImpl implements RewardsService {
         Map<String, Integer> thirdMonthRewards = util.getRewardPoints(lastThirdMonthTransactions);
         LOGGER.info("lastThirdMonthTransactions : " + lastThirdMonthTransactions.size());
 
-//        Long lastMonthRewardPoints = util.getRewardsPerMonth(lastMonthTransactions);
-//        Long lastSecondMonthRewardPoints = util.getRewardsPerMonth(lastSecondMonthTransactions);
-//        Long lastThirdMonthRewardPoints = util.getRewardsPerMonth(lastThirdMonthTransactions);
-
         Rewards customerRewards = new Rewards(customerId, firstmonthRewardsPoint.get("TOTAL"), secondMonthRewards.get("TOTAL"), thirdMonthRewards.get("TOTAL")
                 , firstmonthRewardsPoint.get("TOTAL") + secondMonthRewards.get("TOTAL") + thirdMonthRewards.get("TOTAL"));
         return customerRewards;
@@ -76,25 +81,61 @@ public class RewardsServiceImpl implements RewardsService {
     @Override
     public CustomerBo findCustomerById(Long customerId) {
         Customer customer = customerRepository.findByCustomerId(customerId);
-        if (customer != null)
-            return new CustomerBo(customer.getCustomerId(), customer.getCustomerName());
+        if (customer == null)
+            throw new CustomerNotFoundException("Customer with id was not found" + customerId);
         else
-            return null;
+            return new CustomerBo(customer.getCustomerId(),customer.getCustomerName());
     }
 
     @Override
     public int saveTransaction(TransactionBo transaction) {
         LOGGER.info(" Save Transaction " + transaction);
-        int i = 0;
+        int noOfUpdate = 0;
         try {
-           i =  transactionJdbcRepository.insert(new Transaction(transaction.getTransactionId(),
+            noOfUpdate =  transactionJdbcRepository.insert(new Transaction(transaction.getTransactionId(),
                     transaction.getCustomerId(), transaction.getTransactionDate(), transaction.getAmount()));
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (TransactionNotFoundException transactionNotFoundException) {
+            LOGGER.error("Error Saving Transactions."+ transactionNotFoundException.getMessage());
+        }
+        catch (Exception e) {
+            LOGGER.error("Error Saving Transactions."+ e.getMessage());
         }
 
-        return i;
+        return noOfUpdate;
+    }
+
+    @Override
+    public Long updateTransaction(TransactionBo transaction) {
+        LOGGER.info(" update Transaction " + transaction);
+        try {
+            Transaction t = transactionRepository.save(new Transaction(transaction.getTransactionId(),
+                    transaction.getCustomerId(), transaction.getTransactionDate(), transaction.getAmount()));
+
+        } catch (TransactionNotFoundException transactionNotFoundException) {
+            LOGGER.error("Error updating Transactions."+ transactionNotFoundException.getMessage());
+        }
+        catch (Exception e) {
+            LOGGER.error("Error updating Transactions."+ e.getMessage());
+        }
+
+        return transaction.getTransactionId();
+    }
+
+    @Override
+    public void deleteTransaction(TransactionBo transaction) {
+        LOGGER.info(" Deleting Transaction " + transaction);
+        try {
+           transactionRepository.delete(new Transaction(transaction.getTransactionId(),
+                    transaction.getCustomerId(), transaction.getTransactionDate(), transaction.getAmount()));
+
+        } catch (TransactionNotFoundException transactionNotFoundException) {
+            LOGGER.error("Error Deleting Transactions."+ transactionNotFoundException.getMessage());
+        }
+        catch (Exception e) {
+            LOGGER.error("Error Deleting Transactions."+ e.getMessage());
+        }
+
     }
 
 }
