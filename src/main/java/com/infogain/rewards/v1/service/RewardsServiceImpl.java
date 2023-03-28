@@ -22,6 +22,7 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class RewardsServiceImpl implements RewardsService {
@@ -85,6 +86,23 @@ public class RewardsServiceImpl implements RewardsService {
             throw new CustomerNotFoundException("Customer with id was not found" + customerId);
         else
             return new CustomerBo(customer.getCustomerId(),customer.getCustomerName());
+    }
+
+    @Override
+    public TransactionBo findTransactionById(Long transactionId) {
+        LOGGER.info(" Find Transaction by Id {}", transactionId);
+        Optional<Transaction> transaction = null;
+        try {
+             transaction = transactionRepository.findById(transactionId);
+
+        } catch (TransactionNotFoundException transactionNotFoundException) {
+            LOGGER.error("Error updating Transactions."+ transactionNotFoundException.getMessage());
+        }
+        catch (Exception e) {
+            LOGGER.error("Error updating Transactions."+ e.getMessage());
+        }
+       Transaction  t =  transaction.get();
+        return new TransactionBo(t.getTransactionId(),t.getCustomerId(),t.getTransactionDate(),t.getAmount());
     }
 
     @Override

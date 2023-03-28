@@ -1,5 +1,6 @@
 package com.infogain.rewards.v1.controller;
 
+import com.infogain.rewards.v1.dto.Transaction;
 import com.infogain.rewards.v1.exceptions.CustomerNotFoundException;
 import com.infogain.rewards.v1.model.CustomerBo;
 import com.infogain.rewards.v1.model.Rewards;
@@ -35,6 +36,19 @@ public class CustomerRewardsController {
 
         Rewards customerRewards = rewardsService.getRewardsByCustomerId(customerId);
         return new ResponseEntity<>(customerRewards, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/rewards/transaction/{transactionId}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TransactionBo> findTransactionbyId(@PathVariable int transactionId) {
+        LOGGER.info("Create Transactions {}",transactionId);
+
+        Long tId = Long.valueOf(transactionId);
+        try {
+            TransactionBo _transaction = rewardsService.findTransactionById(tId);
+            return new ResponseEntity<>(_transaction, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PutMapping(value = "/rewards/transaction",produces = MediaType.APPLICATION_JSON_VALUE)

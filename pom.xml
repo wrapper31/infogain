@@ -79,9 +79,14 @@
 			<version>RELEASE</version>
 			<scope>compile</scope>
 		</dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
 
 
-<!--		<dependency>-->
+        <!--		<dependency>-->
 <!--			<groupId>org.springdoc</groupId>-->
 <!--			<artifactId>springdoc-openapi-ui</artifactId>-->
 <!--			<version>1.2.32</version>-->

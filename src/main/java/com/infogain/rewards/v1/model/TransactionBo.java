@@ -14,6 +14,13 @@ public class TransactionBo {
     private Timestamp transactionDate;
     private double amount;
 
+    public TransactionBo(Long transactionId, Long customerId, Timestamp transactionDate, double amount) {
+        this.transactionId = transactionId;
+        this.customerId = customerId;
+        this.transactionDate = transactionDate;
+        this.amount = amount;
+    }
+
     public Long getTransactionId() {
         return transactionId;
     }
