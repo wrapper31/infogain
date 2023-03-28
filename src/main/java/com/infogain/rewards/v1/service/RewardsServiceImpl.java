@@ -1,30 +1,25 @@
-package com.infogain.rewards.service;
+package com.infogain.rewards.v1.service;
 
 
-import com.infogain.rewards.controller.CustomerRewardsController;
-import com.infogain.rewards.dto.Customer;
-import com.infogain.rewards.dto.Transaction;
-import com.infogain.rewards.model.CustomerBo;
-import com.infogain.rewards.model.Rewards;
-import com.infogain.rewards.model.TransactionBo;
-import com.infogain.rewards.repository.CustomerRepository;
-import com.infogain.rewards.repository.TransactionJdbcRepository;
-import com.infogain.rewards.repository.TransactionRepository;
-import com.infogain.rewards.utility.Constants;
-import com.infogain.rewards.utility.RewardsUtil;
+import com.infogain.rewards.v1.dto.Customer;
+import com.infogain.rewards.v1.dto.Transaction;
+import com.infogain.rewards.v1.model.CustomerBo;
+import com.infogain.rewards.v1.model.Rewards;
+import com.infogain.rewards.v1.model.TransactionBo;
+import com.infogain.rewards.v1.repository.CustomerRepository;
+import com.infogain.rewards.v1.repository.TransactionJdbcRepository;
+import com.infogain.rewards.v1.repository.TransactionRepository;
+import com.infogain.rewards.v1.utility.Constants;
+import com.infogain.rewards.v1.utility.RewardsUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class RewardsServiceImpl implements RewardsService {

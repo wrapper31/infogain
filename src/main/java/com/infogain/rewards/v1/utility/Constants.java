@@ -1,4 +1,4 @@
-package com.infogain.rewards.utility;
+package com.infogain.rewards.v1.utility;
 
 public class Constants {
     public static final int daysInMonths = 30;

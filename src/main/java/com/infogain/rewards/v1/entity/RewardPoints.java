@@ -1,4 +1,4 @@
-package com.infogain.rewards.entity;
+package com.infogain.rewards.v1.entity;
 
 import lombok.Data;
 

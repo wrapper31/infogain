@@ -1,11 +1,9 @@
-package com.infogain.rewards.controller;
+package com.infogain.rewards.v1.controller;
 
-import com.infogain.rewards.RewardsApplication;
-import com.infogain.rewards.dto.Customer;
-import com.infogain.rewards.model.CustomerBo;
-import com.infogain.rewards.model.Rewards;
-import com.infogain.rewards.model.TransactionBo;
-import com.infogain.rewards.service.RewardsService;
+import com.infogain.rewards.v1.model.CustomerBo;
+import com.infogain.rewards.v1.model.Rewards;
+import com.infogain.rewards.v1.model.TransactionBo;
+import com.infogain.rewards.v1.service.RewardsService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

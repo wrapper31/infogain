@@ -1,18 +1,14 @@
-package com.infogain.rewards;
+package com.infogain.rewards.v1;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.infogain.rewards.dto.Customer;
-import com.infogain.rewards.model.CustomerBo;
-import com.infogain.rewards.service.RewardsService;
+import com.infogain.rewards.v1.model.CustomerBo;
+import com.infogain.rewards.v1.service.RewardsService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-
-import java.util.Optional;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

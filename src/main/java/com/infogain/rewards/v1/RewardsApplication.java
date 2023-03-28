@@ -1,4 +1,4 @@
-package com.infogain.rewards;
+package com.infogain.rewards.v1;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

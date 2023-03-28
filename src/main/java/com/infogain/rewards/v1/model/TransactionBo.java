@@ -1,4 +1,4 @@
-package com.infogain.rewards.model;
+package com.infogain.rewards.v1.model;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

@@ -1,8 +1,8 @@
-package com.infogain.rewards.service;
+package com.infogain.rewards.v1.service;
 
-import com.infogain.rewards.model.CustomerBo;
-import com.infogain.rewards.model.Rewards;
-import com.infogain.rewards.model.TransactionBo;
+import com.infogain.rewards.v1.model.CustomerBo;
+import com.infogain.rewards.v1.model.Rewards;
+import com.infogain.rewards.v1.model.TransactionBo;
 
 public interface RewardsService {
     public Rewards getRewardsByCustomerId(Long customerId);

@@ -1,7 +1,6 @@
-package com.infogain.rewards.utility;
+package com.infogain.rewards.v1.utility;
 
-import com.infogain.rewards.dto.Transaction;
-import com.infogain.rewards.service.RewardsServiceImpl;
+import com.infogain.rewards.v1.dto.Transaction;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
@@ -13,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Component
 public class RewardsUtil {

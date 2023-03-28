@@ -1,4 +1,4 @@
-package com.infogain.rewards.model;
+package com.infogain.rewards.v1.model;
 
 public class Rewards {
     private long customerId;
