@@ -40,6 +40,7 @@ public class CustomerRewardsController {
             throw new RuntimeException("Invalid / Missing customer Id ");
         }
         LOGGER.info(" Customer name is  : " + customer.getCustomerName());
+
         Rewards customerRewards = rewardsService.getRewardsByCustomerId(customerId);
         return new ResponseEntity<>(customerRewards, HttpStatus.OK);
     }
