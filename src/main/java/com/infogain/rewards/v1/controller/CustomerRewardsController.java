@@ -22,9 +22,6 @@ public class CustomerRewardsController {
     @Autowired
     RewardsService rewardsService;
 
-//    @Autowired
-//    CustomerRepository customerRepository;
-
 
     @GetMapping(value = "/rewards/{customerId}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Rewards> getRewardsByCustomerId(@PathVariable("customerId") Long customerId) {
