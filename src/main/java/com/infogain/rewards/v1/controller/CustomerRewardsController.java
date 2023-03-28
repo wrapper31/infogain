@@ -28,11 +28,7 @@ public class CustomerRewardsController {
 
     @GetMapping(value = "/rewards/{customerId}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Rewards> getRewardsByCustomerId(@PathVariable("customerId") Long customerId) {
-
-        LOGGER.info("Info level log message");
-        LOGGER.debug("Debug level log message");
-        LOGGER.error("Error level log message");
-
+        LOGGER.info("Getting Rewards By Customer id {}",customerId);
         CustomerBo customer = rewardsService.findCustomerById(customerId);
         if(customer == null)
         {
