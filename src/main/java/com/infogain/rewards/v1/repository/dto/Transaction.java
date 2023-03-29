@@ -1,25 +1,27 @@
-package com.infogain.rewards.v1.model;
+package com.infogain.rewards.v1.repository.dto;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import javax.persistence.Column;
 import java.sql.Timestamp;
 
-public class TransactionBo {
-
+@Entity
+@Table(name = "TRANSACTION")
+public class Transaction {
+    @Id
+    @Column(name = "TRANSACTION_ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long transactionId;
+
+    @Column(name = "CUSTOMER_ID")
     private Long customerId;
+
+    @Column(name = "TRANSACTION_DATE")
     private Timestamp transactionDate;
+
+    @Column(name = "AMOUNT")
     private double amount;
 
-    public TransactionBo(Long transactionId, Long customerId, Timestamp transactionDate, double amount) {
-        this.transactionId = transactionId;
-        this.customerId = customerId;
-        this.transactionDate = transactionDate;
-        this.amount = amount;
-    }
 
     public Long getTransactionId() {
         return transactionId;
@@ -53,9 +55,25 @@ public class TransactionBo {
         this.amount = amount;
     }
 
+    public Transaction() {
+    }
+
+    public Transaction(Long customerId, Timestamp transactionDate, double amount) {
+        this.customerId = customerId;
+        this.transactionDate = transactionDate;
+        this.amount = amount;
+    }
+
+    public Transaction(Long transactionId, Long customerId, Timestamp transactionDate, double amount) {
+        this.transactionId = transactionId;
+        this.customerId = customerId;
+        this.transactionDate = transactionDate;
+        this.amount = amount;
+    }
+
     @Override
     public String toString() {
-        return "TransactionBo{" +
+        return "Transaction{" +
                 "transactionId=" + transactionId +
                 ", customerId=" + customerId +
                 ", transactionDate=" + transactionDate +

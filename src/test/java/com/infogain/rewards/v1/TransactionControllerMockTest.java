@@ -1,7 +1,7 @@
 package com.infogain.rewards.v1;
 
 import com.infogain.rewards.v1.controller.CustomerRewardsController;
-import com.infogain.rewards.v1.model.TransactionBo;
+import com.infogain.rewards.v1.service.model.TransactionBo;
 import com.infogain.rewards.v1.service.RewardsService;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

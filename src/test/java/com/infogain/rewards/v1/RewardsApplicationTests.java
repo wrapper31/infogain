@@ -1,9 +1,8 @@
 package com.infogain.rewards.v1;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.infogain.rewards.v1.model.CustomerBo;
+import com.infogain.rewards.v1.service.model.CustomerBo;
 import com.infogain.rewards.v1.service.RewardsService;
-import com.infogain.rewards.v1.service.RewardsServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;

@@ -1,7 +1,7 @@
 package com.infogain.rewards.v1;
 
-import com.infogain.rewards.v1.model.CustomerBo;
-import com.infogain.rewards.v1.model.TransactionBo;
+import com.infogain.rewards.v1.service.model.CustomerBo;
+import com.infogain.rewards.v1.service.model.TransactionBo;
 import net.minidev.json.JSONObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

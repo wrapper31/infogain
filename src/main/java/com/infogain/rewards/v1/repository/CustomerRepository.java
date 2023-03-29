@@ -1,6 +1,6 @@
 package com.infogain.rewards.v1.repository;
 
-import com.infogain.rewards.v1.dto.Customer;
+import com.infogain.rewards.v1.repository.dto.Customer;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

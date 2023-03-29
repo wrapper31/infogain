@@ -1,4 +1,4 @@
-package com.infogain.rewards.v1.dto;
+package com.infogain.rewards.v1.repository.dto;
 
 
 import jakarta.persistence.*;

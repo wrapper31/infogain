@@ -1,13 +1,13 @@
 package com.infogain.rewards.v1.service;
 
 
-import com.infogain.rewards.v1.dto.Customer;
-import com.infogain.rewards.v1.dto.Transaction;
+import com.infogain.rewards.v1.repository.dto.Customer;
+import com.infogain.rewards.v1.repository.dto.Transaction;
 import com.infogain.rewards.v1.exceptions.CustomerNotFoundException;
 import com.infogain.rewards.v1.exceptions.TransactionNotFoundException;
-import com.infogain.rewards.v1.model.CustomerBo;
-import com.infogain.rewards.v1.model.Rewards;
-import com.infogain.rewards.v1.model.TransactionBo;
+import com.infogain.rewards.v1.service.model.CustomerBo;
+import com.infogain.rewards.v1.service.model.Rewards;
+import com.infogain.rewards.v1.service.model.TransactionBo;
 import com.infogain.rewards.v1.repository.CustomerRepository;
 import com.infogain.rewards.v1.repository.TransactionJdbcRepository;
 import com.infogain.rewards.v1.repository.TransactionRepository;

@@ -1,4 +1,4 @@
-package com.infogain.rewards.v1.model;
+package com.infogain.rewards.v1.service.model;
 
 public class CustomerBo {
 
