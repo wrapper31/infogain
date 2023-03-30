@@ -41,24 +41,20 @@ public class RewardsUtil {
         return rewardPointsByMonth;
     }
 
-    private Function<Double, Integer> calculatePoints = transactionAmount -> {
+    final private Function<Double, Integer> calculatePoints = transactionAmount -> {
         int points = 0;
-
-        if (transactionAmount > 100) {
-            points += 2 * (int) (transactionAmount - 100);
+        if (transactionAmount > Constants.secondRewardLimit) {
+            points += 2 * (int) (transactionAmount - Constants.secondRewardLimit);
             transactionAmount = 100.00;
         }
-
-        if (transactionAmount > 50 && transactionAmount <= 100) {
-            points += 1 * (int) (transactionAmount - 50);
+        if (transactionAmount > Constants.firstRewardLimit && transactionAmount <= Constants.secondRewardLimit) {
+            points += (int) (transactionAmount - Constants.firstRewardLimit);
         }
-
         LOGGER.info(" Total Points :::  {}",points);
         return points;
     };
 
-
-    private Function<Timestamp, Integer> getMonthFromTimeStamp = ts -> {
+    final private Function<Timestamp, Integer> getMonthFromTimeStamp = ts -> {
         long timestamp = ts.getTime();
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(timestamp);
