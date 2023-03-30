@@ -41,10 +41,19 @@ public class RewardsUtil {
         return rewardPointsByMonth;
     }
 
-    private Function<Double, Integer> calculatePoints = amount -> {
+    private Function<Double, Integer> calculatePoints = transactionAmount -> {
         int points = 0;
-        if (amount > 100) points += 2 * (amount - 100); amount=100.00;
-        if (amount > 50) points += (amount - 50);
+
+        if (transactionAmount > 100) {
+            points += 2 * (int) (transactionAmount - 100);
+            transactionAmount = 100.00;
+        }
+
+        if (transactionAmount > 50 && transactionAmount <= 100) {
+            points += 1 * (int) (transactionAmount - 50);
+        }
+
+        LOGGER.info(" Total Points :::  {}",points);
         return points;
     };
 

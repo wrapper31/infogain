@@ -38,7 +38,7 @@ public class CustomerRewardsController {
     }
 
     @GetMapping(value = "/rewards/transaction/{transactionId}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TransactionBo> findTransactionbyId(@PathVariable int transactionId) {
+    public ResponseEntity<TransactionBo> findTransactionById(@PathVariable int transactionId) {
         LOGGER.info("Create Transactions {}",transactionId);
 
         Long tId = Long.valueOf(transactionId);
@@ -64,6 +64,7 @@ public class CustomerRewardsController {
     @PostMapping(value = "/rewards/transaction",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TransactionBo> updateTransaction(@RequestBody TransactionBo transaction) {
         LOGGER.info("Updating a Transaction" + transaction.toString());
+
         try {
             Long i = rewardsService.updateTransaction(transaction);
             return new ResponseEntity<>(transaction, HttpStatus.OK);
@@ -73,7 +74,7 @@ public class CustomerRewardsController {
     }
 
     @DeleteMapping (value = "/rewards/transaction",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TransactionBo> deleteransaction(@RequestBody TransactionBo transaction) {
+    public ResponseEntity<TransactionBo> deleteTransaction(@RequestBody TransactionBo transaction) {
         LOGGER.info("Deleting a Transaction" + transaction.toString());
         try {
             rewardsService.deleteTransaction(transaction);

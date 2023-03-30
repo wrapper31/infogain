@@ -32,7 +32,7 @@ public class TransactionControllerMockTest {
         TransactionBo TransactionBo = null;
 
         when(rewardsService.saveTransaction(t1)).thenReturn(1);
-        ResponseEntity<TransactionBo> result =  customerRewardsController.findTransactionbyId(10023);
+        ResponseEntity<TransactionBo> result =  customerRewardsController.findTransactionById(10023);
         assertThat(result.getBody().getTransactionId()).isEqualTo(t1.getTransactionId());
         assertThat(result.getBody().getCustomerId()).isEqualTo(t1.getCustomerId());
     }
@@ -46,7 +46,7 @@ public class TransactionControllerMockTest {
         TransactionBo TransactionBo = null;
 
         when(rewardsService.updateTransaction(t1)).thenReturn(t1.getTransactionId());
-        ResponseEntity<TransactionBo> result =  customerRewardsController.findTransactionbyId(10023);
+        ResponseEntity<TransactionBo> result =  customerRewardsController.findTransactionById(10023);
         assertThat(result.getBody().getTransactionId()).isEqualTo(t1.getTransactionId());
         assertThat(result.getBody().getCustomerId()).isEqualTo(t1.getCustomerId());
     }
@@ -57,7 +57,7 @@ public class TransactionControllerMockTest {
         Timestamp ts = Timestamp.valueOf(text);
         System.out.println(ts);
         TransactionBo t = new TransactionBo(10023L, 1002L, ts,49.00);
-        ResponseEntity<TransactionBo> result = customerRewardsController.deleteransaction(t);
+        ResponseEntity<TransactionBo> result = customerRewardsController.deleteTransaction(t);
         assertThat(result.getBody()== null);
     }
 }
